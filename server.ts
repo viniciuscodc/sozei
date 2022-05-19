@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { routes } from './api/routes';
@@ -13,9 +12,9 @@ app.use('/tools', routes)
 app.listen(port, () => console.log(`Server running on http://localhost:${String(port)}`));
 
 AppDataSource.initialize()
-    .catch((error) => console.log(error))
+    .catch((error : Error) => console.log(error))
 
-app.use((req : Request, res : Response, next : NextFunction) => {
+app.use((req, res ,next ) => {
     res.status(404).json()
     next()
 })
