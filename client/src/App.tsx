@@ -1,13 +1,22 @@
 import styled from "styled-components";
+import Button from "./shared/Button";
 
 const Title = styled.h1`
-  font-size: 1.5em;
-  color: palevioletred;
+  font-size: 42px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+  color: #170c3a;
 `;
 
-const Subtitle = styled.h2`
-  font-size: 1.5em;
-  color: palevioletred;
+const Subtitle = styled.h3`
+  font-size: 30px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #170c3a;
+  margin: 25px 0;
 `;
 
 const Container = styled.div`
@@ -18,39 +27,75 @@ const Container = styled.div`
 const Interaction = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
-const SearchBar = styled.div`
-  width: 100px;
-  height: 30px;
-  background-color: white;
+const SearchBox = styled.input`
+  width: 180px;
+  height: 35px;
+  padding-left: 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ebeaed;
+  background: #f5f4f6;
+  &:focus {
+    outline: none;
+    background: #ebeaed;
+    border: 1px solid #dedce1;
+  }
 `;
 
 const CheckBox = styled.input`
+  cursor: pointer;
   float: left;
-`;
-
-const Button = styled.button`
-  
 `;
 
 const Tool = styled.div`
   display: block;
-  background-color: white;
+  padding: 20px 30px;
+  background: #ffffff;
+  box-shadow: 0px 10px 10px #0000000d;
+  border: 1px solid #ebeaed;
+  border-radius: 5px;
 `;
 
-const ToolTitle = styled.h4`
+const ToolHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ToolTitle = styled.h5`
+  font-size: 24px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.48px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
   color: blue;
 `;
 
 const Description = styled.p`
-
+  margin: 10px 0;
+  font-size: 20px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  color: #170c3a;
+  letter-spacing: 0.4px;
 `;
 
-const Tags = styled.span`
-
+const Tag = styled.span`
+  font-size: 16px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding-right: 5px;
 `;
 
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export default function App() {
   return (
@@ -58,19 +103,27 @@ export default function App() {
       <Title>vuttr</Title>
       <Subtitle>Very Useful Tools to Remember</Subtitle>
       <Interaction>
-        <div style={{ display: "flex" }}>
-          <SearchBar></SearchBar>
+        <SearchContainer>
+          <SearchBox type="text" placeholder="search" />
           <label>
             search in tags only
             <CheckBox type="checkbox" />
           </label>
-        </div>
+        </SearchContainer>
         <Button>Add</Button>
       </Interaction>
       <Tool>
-        <ToolTitle>Notion</ToolTitle>
-        <Description>texto texto texto</Description>
-        <Tags>#node #java</Tags>
+        <ToolHeader>
+          <ToolTitle>Notion</ToolTitle>
+          <span>remove</span>
+        </ToolHeader>
+        <Description>
+          Fake REST API based on a json schema. Useful for mocking and creating
+          APIs for front-end devs to consume in coding challenges.
+        </Description>
+        <Tag>#node</Tag>
+        <Tag>#java</Tag>
+        <Tag>#docker</Tag>
       </Tool>
     </Container>
   );
