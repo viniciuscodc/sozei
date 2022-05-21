@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Button from "./shared/Button";
+import Cross from "./assets/cross.svg";
+import { useState } from "react";
+import Modal from "./shared/Modal";
 
 const Title = styled.h1`
   font-size: 42px;
@@ -97,7 +100,20 @@ const SearchContainer = styled.div`
   align-items: center;
 `;
 
+const CrossSt = styled.img`
+  width: 9px;
+  padding-right: 3px;
+  filter: invert(42%) sepia(85%) saturate(489%) hue-rotate(314deg)
+    brightness(100%) contrast(95%);
+`;
+
+function handleAddModalClick(){
+  console.log('click')
+}
+
 export default function App() {
+  const [addModal, setAddModal] = useState();
+
   return (
     <Container>
       <Title>vuttr</Title>
@@ -110,12 +126,18 @@ export default function App() {
             <CheckBox type="checkbox" />
           </label>
         </SearchContainer>
-        <Button>Add</Button>
+        <Button variant="primaryNeutral">Add</Button>
       </Interaction>
       <Tool>
         <ToolHeader>
           <ToolTitle>Notion</ToolTitle>
-          <span>remove</span>
+          <Button
+            onClick={handleAddModalClick}
+            startIcon={<CrossSt src={Cross} />}
+            variant="quartiaryDanger"
+          >
+            Remove
+          </Button>
         </ToolHeader>
         <Description>
           Fake REST API based on a json schema. Useful for mocking and creating
@@ -125,6 +147,11 @@ export default function App() {
         <Tag>#java</Tag>
         <Tag>#docker</Tag>
       </Tool>
+      {addModal ? (
+        <Modal>
+          <span>texto</span>
+        </Modal>
+      ) : null}
     </Container>
   );
 }
